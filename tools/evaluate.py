@@ -42,7 +42,7 @@ if __name__ == "__main__":
 	close_chrome()
 	print "Start Testing ..."
 	global algos
-	algos = ['lolypop', 'bola', 'dashjs']
+	algos = ['lolypop']
 	tc = 0
 	# For every config, run test x time
 	while tc < test_count:
