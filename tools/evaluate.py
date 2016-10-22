@@ -53,9 +53,6 @@ if __name__ == "__main__":
 		print "Test config omega: %d - sigma: %d - delay: %d sec" % (omega, sigma, delay)
 		print "%d run(s) for each algo" % RUNS
 		while count < RUNS:
-			# Test algo in random order each time
-			print algos
-			shuffle(algos)
 			print algos
 			for algo in algos:
 				test_nr = tc+1
