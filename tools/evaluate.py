@@ -6,7 +6,7 @@ import time, sys
 from random import shuffle
 
 BASE_URL = "http://localhost:8080/samples/live-streaming"
-URL = BASE_URL + "/scheme=%s&proxy=%s&livesimulator=%s&segment_duration=%d&%s?algo=%s&omega=%d&sigma=%d&test_nr=%d&run_nr=%d&delay=%d&report=1"
+URL = BASE_URL + "/%s?scheme=%s&proxy=%s&livesimulator=%s&segment_duration=%s&algo=%s&omega=%d&sigma=%d&test_nr=%d&run_nr=%d&delay=%d&report=1"
 
 RUNS = 5
 RUN_DURATION_SEC = 5 * 60
