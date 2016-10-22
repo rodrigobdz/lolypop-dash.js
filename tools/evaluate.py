@@ -37,7 +37,7 @@ def close_chrome():
   retval = sp.communicate()[0]
   print sp.returncode
   assert sp.returncode == 0 or 1, "Ran into an issue while closing chrome browser"
-      return sp.returncode
+    return sp.returncode
 
 # Test Start
 
