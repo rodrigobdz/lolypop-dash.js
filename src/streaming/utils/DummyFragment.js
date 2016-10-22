@@ -62,7 +62,7 @@ function DummyFragment(config) {
 
     function setTimingData (request) {
         let pos = 0;
-        let buffer = segmentData.get(request.quality);
+        let buffer = segmentData.get(request.quality, request.duration);
         let data = new DataView(buffer);
         let parsedFile = ISOBoxer.parseBuffer(buffer);
 
