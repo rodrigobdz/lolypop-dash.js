@@ -4,6 +4,7 @@ from flask import Flask, request
 from flask_cors import CORS, cross_origin
 
 import time
+import os
 
 LOG_DIR = '/home/tkn/rodrigo/logs/'
 DOWNLOAD_METRIC = 0
@@ -137,6 +138,12 @@ def index():
 
 def create_log_files():
 	ts = int(time.time())
+	# Create directory for all output files
+	# This will only succeed if no root permission is needed
+	LOG_DIR = LOG_DIR + str(ts) + '/'
+	if not os.path.exists(LOG_DIR):
+	    os.makedirs(LOG_DIR)
+
 	# Create quality log file
 	global download_log_file
 	download_log_file = LOG_DIR + str(ts) + '_download_log.csv'
