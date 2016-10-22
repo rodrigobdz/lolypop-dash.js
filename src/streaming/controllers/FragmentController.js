@@ -132,7 +132,8 @@ function FragmentController(/*config*/) {
             'first_bytes_time': request.firstByteDate.getTime(),
             'loaded_time': request.requestEndDate.getTime(),
             'bytes_loaded:': request.bytesLoaded,
-            'bytes_total': request.bytesTotal
+            'bytes_total': request.bytesTotal,
+            'segment_nr': request.index
         });
     }
 

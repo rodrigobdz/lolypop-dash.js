@@ -4,8 +4,9 @@ from flask import Flask, request
 from flask_cors import CORS, cross_origin
 
 import time
+import os
 
-LOG_DIR = '/home/tkn/Test/logs/'
+LOG_DIR = '/home/tkn/rodrigo/logs/'
 DOWNLOAD_METRIC = 0
 DELAY_METRIC = 1
 SKIPPED_METRIC = 2
@@ -39,6 +40,7 @@ def log_download(args):
 	log_items.append(args.get('sigma'))
 	log_items.append(args.get('test_nr'))
 	log_items.append(args.get('run_nr'))
+	log_items.append(args.get('segment_nr'))
 
 	log_string = to_log_string(log_items)
 
@@ -136,6 +138,13 @@ def index():
 
 def create_log_files():
 	ts = int(time.time())
+	# Create directory for all output files
+	# This will only succeed if no root permission is needed
+	global LOG_DIR
+	LOG_DIR = LOG_DIR + str(ts) + '/'
+	if not os.path.exists(LOG_DIR):
+	    os.makedirs(LOG_DIR)
+
 	# Create quality log file
 	global download_log_file
 	download_log_file = LOG_DIR + str(ts) + '_download_log.csv'
