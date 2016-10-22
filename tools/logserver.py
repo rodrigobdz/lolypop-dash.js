@@ -140,6 +140,7 @@ def create_log_files():
 	ts = int(time.time())
 	# Create directory for all output files
 	# This will only succeed if no root permission is needed
+	global LOG_DIR
 	LOG_DIR = LOG_DIR + str(ts) + '/'
 	if not os.path.exists(LOG_DIR):
 	    os.makedirs(LOG_DIR)
