@@ -30,7 +30,9 @@ tmp
 .idea
 *.tmp
 *.bak
+# Vim swap files
 *.swp
+*.swo
 *~.nib
 local.properties
 .classpath

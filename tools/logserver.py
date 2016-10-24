@@ -147,7 +147,7 @@ def create_log_files():
 
 	# Create quality log file
 	global download_log_file
-	download_log_file = LOG_DIR + str(ts) + '_download_log.csv'
+	download_log_file = LOG_DIR + 'download_log.csv'
 	header = 'metric_id,timestamp,type,bitrate,send_time,first_bytes_time,loaded_time,bytes_loaded,bytes_total,algo,omega,sigma,test_nr,run_nr\n'
 	fo = open(download_log_file, 'wb')
 	fo.write(header)
@@ -155,7 +155,7 @@ def create_log_files():
 
 	# Create delay log file
 	global delay_log_file
-	delay_log_file = LOG_DIR + str(ts) + '_delay_log.csv'
+	delay_log_file = LOG_DIR + 'delay_log.csv'
 	header = 'metric_id,timestamp,delay,algo,omega,sigma,test_nr,run_nr\n'
 	fo = open(delay_log_file, 'wb')
 	fo.write(header)
@@ -163,7 +163,7 @@ def create_log_files():
 
 	# Create throughput log file
 	global throughput_log_file
-	throughput_log_file = LOG_DIR + str(ts) + '_throughput_log.csv'
+	throughput_log_file = LOG_DIR + 'throughput_log.csv'
 	header = 'metric_id,timestamp,type,bytes,activity_s,throughput_bps,algo,omega,sigma,test_nr,run_nr\n'
 	fo = open(throughput_log_file, 'wb')
 	fo.write(header)
@@ -171,7 +171,7 @@ def create_log_files():
 	
 	# Create skipped segment log file
 	global skipped_log_file
-	skipped_log_file = LOG_DIR + str(ts) + '_skipped.csv'
+	skipped_log_file = LOG_DIR + 'skipped.csv'
 	header = 'metric_id,timestamp,type,bitrate,send_time,first_bytes_time,abort_time,bytes_loaded,bytes_total,algo,omega,sigma,test_nr,run_nr\n'
 	fo = open(skipped_log_file, 'wb')
 	fo.write(header)

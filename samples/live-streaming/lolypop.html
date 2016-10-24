@@ -36,7 +36,7 @@
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
-
+    
     function load () {
       var scheme = String(getParameterByName('scheme'));
       var proxy = String(getParameterByName('proxy'));

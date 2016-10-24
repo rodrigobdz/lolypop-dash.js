@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 nr_runs = 5
-algos = ['lolypop']
+algos = ['lolypop', 'bola', 'dashjs']
 configs = [] # Number of items in this list should be the same as the number of tests done
 logfiles = None
 
@@ -25,7 +25,7 @@ argparser.add_argument('-t', action='store', dest='throughput_file',
 def plot_skipped_segment(cfg):
 	df = pd.read_csv(logfiles.skipped_seg_file)
 	df = df[(df['omega'] == cfg['omega']) & (df['sigma'] == cfg['sigma'])]
-	pdata = {'lolypop': []}
+	pdata = {'lolypop': [], 'bola': [], 'dashjs': []}
 	# Not necessary - lolypop algo is the only one who skip
 	data = df[(df['algo'] == 'lolypop')]
 	print data
@@ -33,6 +33,10 @@ def plot_skipped_segment(cfg):
 		d = data[(data['run_nr'] == (i+1))]
 		print len(d.index)
 		pdata['lolypop'].append(len(d.index))
+		#pdata['bola'].append(0)
+		#pdata['dashjs'].append(0)
+		pdata['bola'].append(len(d.index))
+		pdata['dashjs'].append(len(d.index))
 	
 	print pdata
 	#plt.figure()
@@ -40,7 +44,7 @@ def plot_skipped_segment(cfg):
 	plt.xlabel('Algorithms')
 	plt.ylabel('Number of skipped segment')
 	plt.title('Skipped segments')
-	plt.boxplot([pdata['lolypop']])
+	plt.boxplot([pdata['lolypop'], pdata['bola'], pdata['dashjs']])
 	ax.set_xticklabels(algos, rotation=45)
 
 #def get_configs():
@@ -65,7 +69,7 @@ def plot_quality_transitions(cfg):
 	df = pd.read_csv(logfiles.downloads_file)
 	# Data for this config
 	df = df[(df['omega'] == cfg['omega']) & (df['sigma'] == cfg['sigma'])]
-	pdata = {'lolypop': []}
+	pdata = {'lolypop': [], 'bola': [], 'dashjs': []}
 	for algo in algos:
 		print algo
 		data = df[(df['algo'] == algo)]
@@ -82,7 +86,7 @@ def plot_quality_transitions(cfg):
 	plt.xlabel('Algorithms')
 	plt.ylabel('Number of quality transitions')
 	plt.title('Quality transitions')
-	plt.boxplot([pdata['lolypop']])
+	plt.boxplot([pdata['lolypop'], pdata['bola'], pdata['dashjs']])
 	ax.set_xticklabels(algos, rotation=45)
 	ax.text(0.1, 0.9,text, ha='center', va='center', transform=ax.transAxes)
 	
@@ -90,7 +94,7 @@ def plot_quality_transitions(cfg):
 def plot_avg_quality(cfg):
 	df = pd.read_csv(logfiles.downloads_file)
 	df = df[(df['omega'] == cfg['omega']) & (df['sigma'] == cfg['sigma'])]
-	pdata = {'lolypop': []}
+	pdata = {'lolypop': [], 'bola': [], 'dashjs': []}
 	for algo in algos:
 		print algo
 		#print df['algo']
@@ -105,20 +109,20 @@ def plot_avg_quality(cfg):
 	plt.xlabel('Algorithms')
 	plt.ylabel('Video quality (kbps)')
 	plt.title('Video average qaulity')
-	plt.boxplot([pdata['lolypop']])
+	plt.boxplot([pdata['lolypop'], pdata['bola'], pdata['dashjs']])
 	ax.set_xticklabels(algos, rotation=45)
 
 def plot_delay(cfg):
 	df = pd.read_csv(logfiles.delay_file)
 	df = df[(df['omega'] == cfg['omega']) & (df['sigma'] == cfg['sigma'])]
-	pdata = {'lolypop': []}
+	pdata = {'lolypop': [], 'bola': [], 'dashjs': []}
 	for algo in algos:
 		print algo
 		#print df['algo']
 		data = df[(df['algo'] == algo)]
 		for i in range(nr_runs):
-			if (i+1) is 3:
-				continue
+		#	if (i+1) is 3:
+		#		continue
 			d = data[(data['run_nr'] == (i+1))]
 			print d['delay'].mean()
 			pdata[algo].append(d['delay'].mean())
@@ -128,7 +132,7 @@ def plot_delay(cfg):
 	plt.xlabel('Algorithms')
 	plt.ylabel('delay (s)')
 	plt.title('Average delay')
-	plt.boxplot([pdata['lolypop']])
+	plt.boxplot([pdata['lolypop'], pdata['bola'], pdata['dashjs']])
 	ax.set_xticklabels(algos, rotation=45)
 
 def get_configs():
