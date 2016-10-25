@@ -15,7 +15,7 @@ delays = [5]
 sigmas = [50] # in %
 omegas = [4] # in %
 
-schemes = ['http', 'http']
+schemes = ['http', 'https']
 proxies = ['192.168.10.190', '127.0.0.1:3000'] # change port
 segment_durations = ['500ms', '750ms', '1s', '2s']
 livesimulators = ['livesim_http1_custom', 'livesim_http2', 'livesim_no_push']
