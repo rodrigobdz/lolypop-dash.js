@@ -15,8 +15,8 @@ delays = [5]
 sigmas = [50] # in %
 omegas = [4] # in %
 
-schemes = ['http', 'https']
-proxies = ['', ':8080'] # change port
+schemes = ['http', 'http']
+proxies = ['192.168.10.190', '127.0.0.1:3000'] # change port
 segment_durations = ['500ms', '750ms', '1s', '2s']
 livesimulators = ['livesim_http1_custom', 'livesim_http2', 'livesim_no_push']
 
@@ -55,12 +55,6 @@ if __name__ == "__main__":
     sigma = sigmas[0]
     delay = delays[0]
 
-    for scheme in schemes:
-      for proxy in proxies: 
-        for segment_duration in segment_durations:
-          for livesimulator in livesimulators:
-            print scheme + "://192.168.10.190" + proxy + "/" + livesimulator + "/tfdt_1/sintel_" + segment_duration + "/Manifest.mpd"
-
     print "Test config omega: %d - sigma: %d - delay: %d sec" % (omega, sigma, delay)
     print "%d run(s) for each algo" % RUNS
     while count < RUNS:
@@ -69,21 +63,21 @@ if __name__ == "__main__":
           print ''
         for proxy in proxies:
           # HTTP/1 needs no HTTP/2 request cancelling
-          if scheme == 'http' and proxy == proxies[-1]: 
+          if scheme == schemes[0] and proxy == proxies[-1]: 
             continue
           if proxy == proxies[-1]:
             print ''
           for segment_duration in segment_durations:
             for livesimulator in livesimulators:
               # HTTP/1 tests
-              if scheme == 'http' and not(livesimulator == 'livesim_http1_custom'):
+              if scheme == schemes[0] and not(livesimulator == 'livesim_http1_custom'):
                 continue
               # HTTP/2 tests
-              if scheme == 'https' and livesimulator == 'livesim_http1_custom':
+              if scheme == schemes[-1] and livesimulator == 'livesim_http1_custom':
                 continue
               # If nothing is pushed there is no need to cancel anything
               # Take out proxy for no push tests
-              if scheme == 'https' and livesimulator == 'livesim_no_push' and proxy == proxies[-1]:
+              if scheme == schemes[-1] and livesimulator == 'livesim_no_push' and proxy == proxies[-1]:
                 continue
               # print 'Current test url' + scheme + "://192.168.10.190" + proxy + "/" + livesimulator + "/tfdt_1/sintel_" + segment_duration + "/Manifest.mpd"
               for algo in algos:

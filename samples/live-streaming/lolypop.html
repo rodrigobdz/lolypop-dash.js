@@ -43,7 +43,7 @@
       var livesimulator = String(getParameterByName('livesimulator'));
       var segmentDuration = String(getParameterByName('segment_duration'));
 
-      var manifest = scheme + "://192.168.10.190" + proxy + "/" + livesimulator + "/tfdt_1/sintel_" + segmentDuration + "/Manifest.mpd";
+      var manifest = scheme + "://" + proxy + "/" + livesimulator + "/tfdt_1/sintel_" + segmentDuration + "/Manifest.mpd";
 
       var algo = String(getParameterByName('algo')) || 'default';
       var omega = parseInt(getParameterByName('omega')) / 100;
